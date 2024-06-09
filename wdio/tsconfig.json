@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "incremental": true,
+    "tsBuildInfoFile": "./.tsbuildinfo",
+    "moduleResolution": "Node",
+    "module": "CommonJS",
+    "target": "es2022",
+    "types": [
+      "node",
+      "@wdio/globals/types",
+      "@wdio/mocha-framework",
+      "@types/chai"
+    ],
+    "skipLibCheck": true,
+    "alwaysStrict": true,
+    "strictFunctionTypes": true,
+    "noImplicitThis": true,
+    "noImplicitOverride": true,
+    "noEmit": true,
+    "paths": {
+      "@api/*": ["./src/api/*"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@pageObjects/*": ["./src/pageObjects/*"],
+      "@pageElements/*": ["./src/pageElements/*"],
+      "@services/*": ["./src/services/*"],
+      "@constants/*": ["./src/constants/*"],
+      "@fixtures/*": ["./src/fixtures/*"],
+      "@magic-strings/*": ["./src/magic-strings/*"]
+    }
+  },
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
+  "exclude": [
+    "./node_modules"
+  ]
+}
