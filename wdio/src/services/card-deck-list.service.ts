@@ -3,12 +3,12 @@ import { CardDeckListPo } from "@pageObjects/index";
 import { ICardDeckListServiceArgs } from "@services/types/card-deck-list.service.types";
 
 export class CardDeckListService extends BaseService {
-  private readonly page: CardDeckListPo = null;
+  protected override readonly page: CardDeckListPo = null;
   private readonly home: HomeService = null;
 
   constructor(args: ICardDeckListServiceArgs) {
-    super();
     const { page, home } = args;
+    super(page);
     this.page = page;
     this.home = home;
   }

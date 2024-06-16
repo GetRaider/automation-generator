@@ -1,9 +1,9 @@
 import { driver } from "@helpers/driver/driver";
+import { BasePo } from "@pageObjects/base.po";
 
 export class BaseService {
-  constructor(args) {
-    const { page } = args;
-  }
+  protected constructor(protected page: BasePo) {}
+
   async openUrl(url: string): Promise<string> {
     return driver.openUrl(url);
   }
