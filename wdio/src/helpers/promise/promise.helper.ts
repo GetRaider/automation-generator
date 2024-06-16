@@ -7,13 +7,13 @@ export const promiseHelper = {
     return allBoolean(arr, true);
   },
 
-  async someTrue(arr: Array<Promise<boolean>>): Promise<boolean> {
-    throwOnEmptyArray(arr);
+  async someTrue(array: Array<Promise<boolean>>): Promise<boolean> {
+    throwOnEmptyArray(array);
     try {
-      const resolvedPromisesArr = await Promise.all(arr);
+      const resolvedPromisesArr = await Promise.all(array);
       return resolvedPromisesArr.some(promise => promise);
-    } catch (err) {
-      throw new Error(`Some promises rejected: ${err}`);
+    } catch (error) {
+      throw new Error(`Some promises rejected: ${error}`);
     }
   },
 
@@ -35,27 +35,27 @@ export const promiseHelper = {
 };
 
 async function allBoolean(
-  arr: Array<Promise<boolean>>,
+  array: Array<Promise<boolean>>,
   expectation: boolean,
 ): Promise<boolean> {
-  throwOnEmptyArray(arr);
+  throwOnEmptyArray(array);
   try {
-    const resolvedPromisesArr = await Promise.all(arr);
+    const resolvedPromisesArr = await Promise.all(array);
     let finalResult = true;
     resolvedPromisesArr.forEach(promise => {
       const result = promise === expectation;
-      if (result === false) {
+      if (!result) {
         finalResult = false;
       }
     });
     return finalResult;
-  } catch (err) {
-    throw new Error(`Some promises rejected: ${err}`);
+  } catch (error) {
+    throw new Error(`Some promises rejected: ${error}`);
   }
 }
 
-function throwOnEmptyArray(arr: Array<Promise<boolean>>): never | void {
-  if (!arr.length) {
+function throwOnEmptyArray(array: Array<Promise<boolean>>): never | void {
+  if (!array.length) {
     throw new Error("Promises array is empty");
   }
 }

@@ -4,7 +4,6 @@ import { processEnv } from "@helpers/processEnv/processEnv.helper";
 const password = processEnv.USER_PASSWORD;
 
 export const testDataHelper = {
-  api: {
     users: {
       getCreated() {
         const randomNumber = primitivesHelper.getRandom.number();
@@ -16,5 +15,4 @@ export const testDataHelper = {
         };
       },
     },
-  },
 };

@@ -3,12 +3,6 @@ export interface IWaitArgs {
   interval?: number;
 }
 
-export interface IRunInFrameArgs {
-  frame: WebdriverIO.Element;
-  callback: () => Promise<void>;
-  allowErrorInside: boolean;
-}
-
 export interface ISetLocalStorageDataArgs {
   key: string;
   value: string;

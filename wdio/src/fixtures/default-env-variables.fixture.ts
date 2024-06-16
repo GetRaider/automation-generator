@@ -1,4 +1,4 @@
-export const envVariables = `ENV=local
+export const defaultEnvVariables = `ENV=local
 IS_CI=false
 
 #Can be passed spec name/s separated by comma only for UI or API

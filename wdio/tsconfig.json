@@ -11,12 +11,17 @@
       "@wdio/mocha-framework",
       "@types/chai"
     ],
+    "lib": [
+      "ESNext",
+      "dom"
+    ],
     "skipLibCheck": true,
     "alwaysStrict": true,
     "strictFunctionTypes": true,
     "noImplicitThis": true,
     "noImplicitOverride": true,
     "noEmit": true,
+    "esModuleInterop": true,
     "paths": {
       "@api/*": ["./src/api/*"],
       "@helpers/*": ["./src/helpers/*"],
