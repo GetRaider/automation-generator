@@ -1,4 +1,4 @@
-import * as fs from "fs";
+import fs from "fs";
 
 import { magicStrings } from "@magic-strings/magic-strings";
 import { defaultEnvVariables } from "@fixtures/default-env-variables.fixture";
