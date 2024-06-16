@@ -1,5 +1,6 @@
-import * as allureReporter from "@wdio/allure-reporter";
-import * as allure from "allure-commandline";
+import allureReporter from "@wdio/allure-reporter";
+import allure from "allure-commandline";
+
 import { StepStatus } from "@helpers/reporter/reporter.helper.types";
 import { timeouts } from "@constants/timeouts.constants";
 
