@@ -1,5 +1,5 @@
 export interface IServiceFactoryArgs {
-  service: unknown;
+  service: IService;
   pages: IServicePages;
   additionalServices?: IServiceFactoryArgs[];
 }
@@ -10,5 +10,9 @@ export interface IServicePages {
 }
 
 export interface IPage {
+  name: string;
+}
+
+export interface IService {
   name: string;
 }

@@ -1,14 +1,18 @@
-import { IGetServices } from "@services/get-services";
 import { IServiceFactoryArgs } from "@services/utils/types/service-factory.types";
 import { serviceFactory } from "@services/utils/service-factory";
+import { IGetAppServices } from "@services/types/get-services.types";
+import { loggerHelper } from "@helpers/logger/logger.helper";
+
+const logger = loggerHelper.get("Services-Assembler");
 
 export function assembleServices(
   services: Record<string, IServiceFactoryArgs>,
-): IGetServices {
+): IGetAppServices {
   const assembledServices = {};
 
-  if (!services) {
-    throw new Error("At least one service must be provided");
+  if (!Object.keys(services).length) {
+    logger.fatal("No services provided");
+    process.exit(13);
   }
 
   Object.entries(services).forEach(
@@ -16,5 +20,5 @@ export function assembleServices(
       (assembledServices[name] = serviceFactory(serviceArgs)),
   );
 
-  return <IGetServices>assembledServices;
+  return { ...assembledServices } as IGetAppServices;
 }

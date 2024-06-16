@@ -1,36 +1,36 @@
+import {
+  IService,
+  IServiceFactoryArgs,
+  IServicePages,
+} from "@services/utils/types/service-factory.types";
 import { serviceUtils } from "@services/utils/service.utils";
-import { IServiceFactoryArgs } from "@services/utils/types/service-factory.types";
+import { loggerHelper } from "@helpers/logger/logger.helper";
+
+const logger = loggerHelper.get("Service-Factory");
 
 export function serviceFactory(args: IServiceFactoryArgs) {
   const { service, pages, additionalServices = [] } = args;
-  const assembledAdditionalServices = {};
 
-  if (additionalServices.length) {
-    additionalServices.forEach(
-      ({ service, pages, additionalServices }) =>
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        (assembledAdditionalServices[normalizeServiceName(service.name)] =
-          serviceFactory({
-            service,
-            pages,
-            additionalServices,
-          })),
-    );
-  }
-
-  const serviceArgs = {
-    ...serviceUtils.assemblePages(pages),
-    ...assembledAdditionalServices,
-  };
+  !arePagesExist(service, pages) && process.exit(13);
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  return new service(serviceArgs);
+  return new service({
+    ...serviceUtils.assemblePages(pages),
+    ...serviceUtils.assembleAdditionalServices(additionalServices),
+  });
 }
 
-function normalizeServiceName(name: string): string {
-  const letters = name.split("");
-  letters[0] = letters[0].toLowerCase();
-  return letters.join(",").replaceAll(",", "").replaceAll("Service", "");
+function arePagesExist(service: IService, pages: IServicePages): boolean {
+  if (!pages) {
+    logger.fatal(`No pages provided for '${service.name}'`);
+    return false;
+  }
+
+  if (!pages.page) {
+    logger.fatal(`No main page provided for '${service.name}'`);
+    return false;
+  }
+
+  return true;
 }
