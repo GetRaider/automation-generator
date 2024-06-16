@@ -3,5 +3,5 @@ import { HomeService } from "@services/home.service";
 
 export interface ICardDeckListServiceArgs {
   page: CardDeckListPo;
-  homeService: HomeService;
+  home: HomeService;
 }
