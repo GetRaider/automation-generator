@@ -1,21 +1,23 @@
 import { expect } from "chai";
 
 import { suiteHelper } from "@helpers/suite/suite.helper";
-import { service } from "@services/get-services";
-import { driver } from "@helpers/driver/driver";
 import { envHelper } from "@helpers/env/env.helper";
+import { app } from "@services/get-services";
+
+const { cardDeck, cardDeckList } = app;
 
 suiteHelper({
   name: ["Card-deck"],
-  beforeAllSpecs: async () => await driver.openUrl(envHelper.getBaseWebUrl()),
+  beforeAllSpecs: async () =>
+    await cardDeckList.openUrl(envHelper.getBaseWebUrl()),
   specs: [
     {
       name: "Open card-deck with cards",
       test: async () => {
-        await service.cardDeckList.openDecks();
-        await service.cardDeckList.openDeckByName("Random cards");
+        await cardDeckList.openDecks();
+        await cardDeckList.openDeckByName("Random cards");
         expect(
-          await service.cardDeck.isSourceCardSide(),
+          await cardDeck.isSourceCardSide(),
           "default card state is not source",
         ).to.be.true;
       },
@@ -23,8 +25,8 @@ suiteHelper({
         {
           name: "Flip card",
           test: async () => {
-            await service.cardDeck.flipCard();
-            await service.cardDeck.isTranslationCardSide();
+            await cardDeck.flipCard();
+            await cardDeck.isTranslationCardSide();
           },
         },
       ],

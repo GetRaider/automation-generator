@@ -3,10 +3,10 @@ import { HomePo } from "@pageObjects/home.po";
 import { BaseService } from "@services/base.service";
 
 export class HomeService extends BaseService {
-  readonly page: HomePo = null;
+  protected override readonly page: HomePo = null;
   constructor(args: IHomeServiceArgs) {
-    super();
     const { page } = args;
+    super(page);
     this.page = page;
   }
 

@@ -1,21 +1,24 @@
-import { HomeService } from "@services/home.service";
-import { HomePo } from "@pageObjects/home.po";
-import { CardDeckListService } from "@services/card-deck-list.service";
-import { CardDeckListPo } from "@pageObjects/card-deck-list.po";
-import { CardDeckPo } from "@pageObjects/card-deck.po";
-import { CardDeckService } from "@services/card-deck.service";
+import { assembleServices } from "@services/utils/service-assembler";
+import { HomePo, CardDeckListPo, CardDeckPo } from "@pageObjects/index";
+import {
+  HomeService,
+  CardDeckService,
+  CardDeckListService,
+} from "@services/index";
+import { IGetAppServices } from "@services/types/get-services.types";
 
-export const service = {
-  ...getServices(),
+export const app = {
+  ...getAppServices(),
 };
 
-function getServices() {
-  return {
-    home: new HomeService({ page: new HomePo() }),
-    cardDeckList: new CardDeckListService({
-      page: new CardDeckListPo(),
-      homeService: new HomeService({ page: new HomePo() }),
-    }),
-    cardDeck: new CardDeckService({ page: new CardDeckPo() }),
-  };
+function getAppServices(): IGetAppServices {
+  return assembleServices({
+    home: { service: HomeService, pages: { page: HomePo } },
+    cardDeck: { service: CardDeckService, pages: { page: CardDeckPo } },
+    cardDeckList: {
+      service: CardDeckListService,
+      pages: { page: CardDeckListPo },
+      additionalServices: [{ service: HomeService, pages: { page: HomePo } }],
+    },
+  });
 }

@@ -1,13 +1,13 @@
-import { BaseService } from "@services/base.service";
-import { CardDeckPo } from "@pageObjects/card-deck.po";
+import { BaseService } from "@services/index";
+import { CardDeckPo } from "@pageObjects/index";
 import { ICardDeckServiceArgs } from "@services/types/card-deck.service.types";
 
 export class CardDeckService extends BaseService {
-  private readonly page: CardDeckPo = null;
+  protected override readonly page: CardDeckPo = null;
 
   constructor(args: ICardDeckServiceArgs) {
-    super();
     const { page } = args;
+    super(page);
     this.page = page;
   }
 
