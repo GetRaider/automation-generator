@@ -26,8 +26,8 @@ class DriverHelper {
   async getBrowserBaseUrl(): Promise<string> {
     return browser.options.baseUrl;
   }
-  async switchWindow(windowTitle: string): Promise<void> {
-    await browser.switchWindow(windowTitle);
+  async switchWindowByName(name: string): Promise<void> {
+    await browser.switchWindow(name);
   }
 
   async saveScreenshot(screenshotPath: string): Promise<void> {
