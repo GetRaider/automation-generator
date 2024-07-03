@@ -1,18 +1,18 @@
 import axios, { Method } from "axios";
 
-import {
-  IBaseApi,
-  IBaseApiRequestArgs,
-  IGenericHttpResponse,
-  IGetRequestError,
-} from "./api.types";
 import { loggerHelper } from "@helpers/logger/logger.helper";
 import { formatHelper } from "@helpers/format/format.helper";
 import { reporterHelper } from "@helpers/reporter/reporter.helper";
+import {
+  IBaseApiRequestArgs,
+  IBaseHttpClient,
+  IGenericHttpResponse,
+  IGetRequestError,
+} from "@api/http/http.types";
 
-const logger = loggerHelper.get("Base-Api");
+const logger = loggerHelper.get("Base-Http");
 
-export class BaseApi implements IBaseApi {
+export class BaseHttpClient implements IBaseHttpClient {
   async sendRequest<T>(
     method: Method,
     args: IBaseApiRequestArgs,

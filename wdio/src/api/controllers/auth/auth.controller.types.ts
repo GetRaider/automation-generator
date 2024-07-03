@@ -1,6 +1,6 @@
-import { IUserCredentials } from "@api/base/api.types";
+import { IUserCredentials } from "@api/http/http.types";
 
-export interface IAuthApiClient {
+export interface IAuthController {
   getTokenByAuthOption: (authOption: AuthOptionType) => Promise<string>;
 }
 
