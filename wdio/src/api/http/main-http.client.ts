@@ -1,22 +1,25 @@
 import { AxiosHeaders, RawAxiosRequestHeaders } from "axios";
 
 import { envHelper } from "@helpers/env/env.helper";
-import { GenericApi } from "@api/base/generic.api";
-import { IGenericHttpResponse, IMainApiRequestArgs } from "@api/base/api.types";
 import { urlHelper } from "@helpers/url/url.helper";
+import { GenericHttpClient } from "@api/http/generic-http.client";
+import {
+  IGenericHttpResponse,
+  IMainApiRequestArgs,
+} from "@api/http/http.types";
 
-export class MainApi {
+export class MainHttpClient {
   private readonly baseUrl = envHelper.getBaseApiUrl();
 
-  protected constructor(protected genericApi: GenericApi) {
-    this.genericApi = genericApi;
+  protected constructor(protected genericHttp: GenericHttpClient) {
+    this.genericHttp = genericHttp;
   }
 
   protected async get<T>(
     args: IMainApiRequestArgs,
   ): Promise<IGenericHttpResponse<T>> {
     const { token, headers, pathParams, queries } = args;
-    return this.genericApi.get({
+    return this.genericHttp.get({
       url: this.getUrl(pathParams, queries),
       headers: this.getHeaders(token, headers),
     });
@@ -26,7 +29,7 @@ export class MainApi {
     args: IMainApiRequestArgs,
   ): Promise<IGenericHttpResponse<T>> {
     const { token = null, headers, body, pathParams, queries } = args;
-    return this.genericApi.post({
+    return this.genericHttp.post({
       url: this.getUrl(pathParams, queries),
       headers: this.getHeaders(token, headers),
       body,
@@ -37,7 +40,7 @@ export class MainApi {
     args: IMainApiRequestArgs,
   ): Promise<IGenericHttpResponse<T>> {
     const { token = null, headers, body, pathParams, queries } = args;
-    return this.genericApi.put({
+    return this.genericHttp.put({
       url: this.getUrl(pathParams, queries),
       headers: this.getHeaders(token, headers),
       body,
@@ -54,7 +57,7 @@ export class MainApi {
       pathParams,
       queries,
     } = args;
-    return this.genericApi.patch({
+    return this.genericHttp.patch({
       url: this.getUrl(pathParams, queries),
       headers: this.getHeaders(token, headers),
       body,
@@ -65,7 +68,7 @@ export class MainApi {
     args: IMainApiRequestArgs,
   ): Promise<IGenericHttpResponse<T>> {
     const { token = null, headers, body, pathParams, queries } = args;
-    return this.genericApi.delete({
+    return this.genericHttp.delete({
       url: this.getUrl(pathParams, queries),
       headers: this.getHeaders(token, headers),
       body,

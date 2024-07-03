@@ -1,5 +1,5 @@
 import { processEnv } from "@helpers/processEnv/processEnv.helper";
-import { IUserCredentials } from "@api/base/api.types";
+import { IUserCredentials } from "@api/http/http.types";
 
 const password = processEnv.USER_PASSWORD;
 

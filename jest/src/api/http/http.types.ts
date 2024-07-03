@@ -25,7 +25,7 @@ export interface IMainApiRequestArgs {
   queries?: Record<string, string>;
 }
 
-export interface IBaseApi {
+export interface IBaseHttpClient {
   sendRequest<T>(
     method: Method,
     args: IBaseApiRequestArgs,

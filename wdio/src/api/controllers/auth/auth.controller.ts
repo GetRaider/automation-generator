@@ -1,20 +1,20 @@
+import { loggerHelper } from "@helpers/logger/logger.helper";
+import { MainHttpClient } from "@api/http/main-http.client";
+import { formatHelper } from "@helpers/format/format.helper";
 import {
   AuthOptionType,
-  IAuthApiClient,
+  IAuthController,
   IGetToken,
-} from "./auth.api.client.types";
-import { loggerHelper } from "@helpers/logger/logger.helper";
-import { MainApi } from "@api/base/main.api";
-import { GenericApi } from "@api/base/generic.api";
-import { IUserCredentials } from "@api/base/api.types";
-import { formatHelper } from "@helpers/format/format.helper";
+} from "@api/controllers/auth/auth.controller.types";
+import { GenericHttpClient } from "@api/http/generic-http.client";
+import { IUserCredentials } from "@api/http/http.types";
 
 const logger = loggerHelper.get("Auth-Api-Client");
 
-export class AuthApiClient extends MainApi implements IAuthApiClient {
+export class AuthController extends MainHttpClient implements IAuthController {
   private readonly relativeUrl = "auth/token";
   private readonly tokens = {};
-  constructor(genericApi: GenericApi) {
+  constructor(genericApi: GenericHttpClient) {
     super(genericApi);
   }
 

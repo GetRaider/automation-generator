@@ -6,7 +6,7 @@ import { utils } from "@helpers/suite/utils/utils";
 const logger = loggerHelper.get("Suite-Helper");
 
 // The suiteHelper has been created by [Hennadii Mishchevskyi](https://github.com/Gennadiii/MochaWrapper)
-export function suiteHelper(params: ISuite): void {
+export function suiteHelperV2(params: ISuite): void {
   const {
     name,
     testRailSuiteId,
@@ -36,7 +36,7 @@ export function suiteHelper(params: ISuite): void {
           });
       },
       () =>
-        describe(inner, function () {
+        describe(inner, () => {
           logger.info(
             `Tests "${specs
               .map(spec => spec.name)

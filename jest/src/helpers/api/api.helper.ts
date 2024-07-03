@@ -1,15 +1,15 @@
-import { GenericApi } from "@api/base/generic.api";
-import { BaseApi } from "@api/base/base.api";
-import { AuthApiClient } from "@api/clients/auth/auth.api.client";
-import { UserApiClient } from "@api/clients/user/user.api.client";
+import { BaseHttpClient } from "@api/http/base-http.client";
+import { AuthController } from "@api/controllers/auth/auth.controller";
+import { UserController } from "@api/controllers/user/user.controller";
+import { GenericHttpClient } from "@api/http/generic-http.client";
 
 export const api = {
-  ...getApi(new GenericApi(new BaseApi())),
+  ...getApi(new GenericHttpClient(new BaseHttpClient())),
 };
 
-function getApi(genericApi: GenericApi) {
+function getApi(genericHttp: GenericHttpClient) {
   return {
-    auth: new AuthApiClient(genericApi),
-    user: new UserApiClient(genericApi),
+    auth: new AuthController(genericHttp),
+    user: new UserController(genericHttp),
   };
 }
