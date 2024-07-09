@@ -39,7 +39,7 @@ export const executeTestUtils = {
     }
     const tmsId = testRailId || generalTestRailId;
     if (!tmsId) {
-      logger.debug(`No TestRail ID`);
+      logger.debug(`No documentation ID`);
     }
     repeat > 1 && logger.warn(`Dont forget to remove "REPEAT"`);
     const testName = `- ${specName}${disable ? ` #${disable?.reason}` : ""} S${

@@ -1,14 +1,15 @@
 import { expect } from "chai";
 
-import { suiteHelper } from "@helpers/suite/suite.helper";
 import { primitivesHelper } from "@helpers/primitives/primitives.helper";
 import { userDataHelper } from "@helpers/user-data/user-data.helper";
 import { api } from "@helpers/api/api.helper";
+import { suiteV2 } from "@helpers/suiteV2/suiteV2";
+import { suiteHelper } from "@helpers/suite/suite.helper";
 
 let randomUserName: string = null;
 let randomUserAge: number = null;
 
-suiteHelper({
+suiteV2({
   name: ["Users endpoint, Get all"],
   specs: [
     {
