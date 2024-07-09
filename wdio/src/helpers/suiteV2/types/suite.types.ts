@@ -14,8 +14,8 @@ export interface ITest extends IDependantTest {
   dependantTests?: IDependantTest[];
 }
 
-export interface ISuite {
-  name: string[];
+export interface ISuiteV2 {
+  name: string;
   testRailSuiteId?: number;
   beforeAllSpecs?: () => Promise<unknown> | unknown;
   beforeEachSpec?: () => Promise<unknown> | unknown;

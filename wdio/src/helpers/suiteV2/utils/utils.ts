@@ -8,5 +8,5 @@ export const utils = {
     return specs.every(spec => executeTestUtils.isDisabled(spec.disable));
   },
   executor: executorUtils,
-  prePostConditions: postConditionUtils,
+  conditions: postConditionUtils,
 };
