@@ -3,8 +3,11 @@
 REPO_NAME=$1
 CURRENT_DIR=$(pwd)
 PROJECT_DIR="$CURRENT_DIR"
-WDIO_SOURCE_DIR="$CURRENT_DIR/wdio"
-JEST_SOURCE_DIR="$CURRENT_DIR/jest"
+WDIO_SOURCE_DIR="$CURRENT_DIR/templates/wdio"
+JEST_SOURCE_DIR="$CURRENT_DIR/templates/jest"
+SHARED_DIR="$CURRENT_DIR/shared"
+
+echo "🔄 Creating a new automation project..."
 
 # Check if the repository name argument is provided
 if [ $# -eq 0 ]; then
@@ -30,10 +33,19 @@ mkdir -p $PROJECT_DIR/$REPO_NAME
 cd $PROJECT_DIR/$REPO_NAME || exit
 
 # Copy files and folders from source directory to the repository directory
+echo "🔄 Copying template code"
 cp -r $SOURCE_DIR/* .
 
-# Init git repository
-git init
+# Merge the shared directory content into the new project, preserving existing files
+if [ -d "$SHARED_DIR" ]; then
+    echo "🔄 Merging 'shared' content into the new project..."
+    # Using rsync to merge shared content into project
+    rsync -av --ignore-existing "$SHARED_DIR/" "$PROJECT_DIR/$REPO_NAME/src"
+    echo "✅ Merged 'shared' content into the new project"
+else
+    echo "❌ Shared directory does not exist"
+    exit 1
+fi
 
 # NPM install
 echo "🔄 Installing packages..."
