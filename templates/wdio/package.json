@@ -1,7 +1,7 @@
 {
   "name": "unknown-project",
   "scripts": {
-    "test": "wdio local-wdio.conf.ts",
+    "test": "FORCE_COLOR=1 wdio local-wdio.conf.ts",
     "testApi": "mocha",
     "report": "allure generate --clean && allure open",
     "prettier": "prettier --check .",
