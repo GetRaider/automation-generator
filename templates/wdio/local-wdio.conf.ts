@@ -1,9 +1,7 @@
-import { processEnv } from "@helpers/processEnv/processEnv.helper";
 import { configHelper } from "@helpers/config/config.helper";
 import { reporterHelper } from "@helpers/reporter/reporter.helper";
 import { driver } from "@helpers/driver/driver";
 
-const { MOCHA_TIMEOUT } = processEnv;
 const reporters = [
   "spec",
   [
@@ -45,7 +43,7 @@ export const config = {
   framework: "mocha",
   mochaOpts: {
     ui: "bdd",
-    timeout: Number(MOCHA_TIMEOUT) || 90000,
+    timeout: 90000,
   },
 
   async before() {

@@ -1,13 +1,13 @@
 import { configure, getLogger } from "log4js";
+
 import {
   IGetLogger,
   IGetSpecifiedArgs,
   LogType,
 } from "@helpers/logger/logger.types";
-import { reporterHelper } from "@helpers/reporter/reporter.helper";
 
-class LoggerHelper {
-  constructor() {
+export abstract class BaseLoggerHelper {
+  protected constructor() {
     configure({
       appenders: {
         console: {
@@ -29,6 +29,8 @@ class LoggerHelper {
       categories: { default: { appenders: ["console", "file"], level: "ALL" } },
     });
   }
+
+  abstract getSpecifiedLog(args: IGetSpecifiedArgs): void
 
   get(category: string): IGetLogger {
     const logger = getLogger(category);
@@ -77,13 +79,4 @@ class LoggerHelper {
         }),
     };
   }
-
-  private getSpecifiedLog(args: IGetSpecifiedArgs): void {
-    const { logger, type, message, shouldAddReportStep = false } = args;
-
-    logger[type](message);
-    shouldAddReportStep && reporterHelper.addStep(message);
-  }
 }
-
-export const loggerHelper = new LoggerHelper();

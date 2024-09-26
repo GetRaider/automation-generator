@@ -8,6 +8,5 @@ SPEC_NAMES=general-card-deck
 #API specs
 #get
 
-MOCHA_TIMEOUT=90000
 USER_PASSWORD=
 `;

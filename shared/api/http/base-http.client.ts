@@ -2,7 +2,6 @@ import axios, { Method } from "axios";
 
 import { loggerHelper } from "@helpers/logger/logger.helper";
 import { formatHelper } from "@helpers/format/format.helper";
-import { reporterHelper } from "@helpers/reporter/reporter.helper";
 import {
   IBaseApiRequestArgs,
   IBaseHttpClient,
@@ -47,10 +46,6 @@ export class BaseHttpClient implements IBaseHttpClient {
 
     logger.error(errorMessage);
     logger.debug(`Failed request payload: ${failedRequestPayloadJson}`);
-    await reporterHelper.addAttachment(
-      "FailedRequest",
-      failedRequestPayloadJson,
-    );
     throw new Error(errorMessage);
   }
 }

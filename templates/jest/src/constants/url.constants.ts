@@ -1,4 +1,4 @@
-import { processEnv } from "../../../../shared/helpers/processEnv/processEnv.helper";
+import { processEnv } from "@helpers/processEnv/processEnv.helper";
 
 export const urlConstant = {
   base: {

@@ -9,10 +9,10 @@ const config: Config.InitialOptions = {
   testEnvironment: "node",
   verbose: true,
   testRegex: SPEC_NAMES.split(","),
-  rootDir: `./`,
   passWithNoTests: true,
   setupFilesAfterEnv: ["./logging.config.ts"],
   reporters: ["default", "jest-html-reporters"],
+  rootDir: `./`,
   moduleNameMapper: {
     "@api/(.*)": "<rootDir>/src/api/$1",
     "@helpers/(.*)": "<rootDir>/src/helpers/$1",

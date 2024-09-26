@@ -1,6 +1,6 @@
 import {CustomConsole, LogType, LogMessage} from "@jest/console";
 
-function simpleFormatter(type: LogType, message: LogMessage): string {
+function format(type: LogType, message: LogMessage): string {
   const TITLE_INDENT = " ";
   const CONSOLE_INDENT = TITLE_INDENT + " ";
 
@@ -13,5 +13,5 @@ function simpleFormatter(type: LogType, message: LogMessage): string {
 global.console = new CustomConsole(
   process.stdout,
   process.stderr,
-  simpleFormatter,
+  format,
 );
