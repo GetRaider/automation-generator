@@ -1,7 +1,16 @@
-# The generator of automation solution via WDIO+Mocha or Jest
+# The generator of ready-to-go automation solutions based on popular frameworks written with TypeScript
 
-### To create the UI+API repository using WebDriverIO+Mocha with TypeScript:
-sh automation-repo-generator.sh <repository-name> wdio+mocha
+## Available frameworks:
+- [WebDriverIO](https://webdriver.io/)
+- [Jest](https://jestjs.io/)
 
-### To create the API repository using Jest with TypeScript:
-sh automation-repo-generator.sh <repository-name> jest
+### To generate the UI+API solution based on the WebDriverIO (mocha as a runner):
+```bash
+ sh automation-repo-generator.sh <repository-name> wdio
+```
+
+### To generate the API solution based on the Jest:
+```bash
+ sh automation-repo-generator.sh <repository-name> jest
+```
+

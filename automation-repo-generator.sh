@@ -16,12 +16,12 @@ if [ $# -eq 0 ]; then
 fi
 
 # Check if the second argument is provided and set the source directory accordingly
-if [ "$2" == "wdio+mocha" ]; then
+if [ "$2" == "wdio" ]; then
     SOURCE_DIR=$WDIO_SOURCE_DIR
 elif [ "$2" == "jest" ]; then
     SOURCE_DIR=$JEST_SOURCE_DIR
 else
-    echo "❌ Second argument must be either 'wdio+mocha' for UI+API framework or 'jest' for API"
+    echo "❌ Second argument must be either 'wdio' for UI+API or 'jest' for API solution"
     exit 1
 fi
 
@@ -33,7 +33,7 @@ mkdir -p $PROJECT_DIR/$REPO_NAME
 cd $PROJECT_DIR/$REPO_NAME || exit
 
 # Copy files and folders from source directory to the repository directory
-echo "🔄 Copying template code"
+echo "🔄 Copying template code..."
 cp -r $SOURCE_DIR/* .
 
 # Merge the shared directory content into the new project, preserving existing files
@@ -47,8 +47,6 @@ else
     exit 1
 fi
 
-# NPM install
-echo "🔄 Installing packages..."
-npm install
+git init
 
-echo "✅ Project with '$REPO_NAME' name has been created"
+echo "✅ Project with '$REPO_NAME' name successfully created - remains to execute 'npm install'"
