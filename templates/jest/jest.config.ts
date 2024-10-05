@@ -19,6 +19,7 @@ const config: Config.InitialOptions = {
     "@constants/(.*)": "<rootDir>/src/constants/$1",
     "@fixtures/(.*)": "<rootDir>/src/fixtures/$1",
     "@magic-strings/(.*)": "<rootDir>/src/magic-strings/$1",
+    "@decorators/(.*)": "<rootDir>/src/decorators/$1",
   },
 };
 

@@ -30,7 +30,7 @@ export abstract class BaseLoggerHelper {
     });
   }
 
-  abstract getSpecifiedLog(args: IGetSpecifiedArgs): void
+  protected abstract getSpecifiedLog(args: IGetSpecifiedArgs): void
 
   get(category: string): IGetLogger {
     const logger = getLogger(category);
