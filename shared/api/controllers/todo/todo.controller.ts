@@ -7,7 +7,9 @@ import {
   ITodoController,
 } from "@api/controllers/todo/todo.controller.types";
 import { api } from "@helpers/api/api.helper";
+import { ClassLog } from "@decorators/logger.decorators";
 
+@ClassLog
 export class TodoController extends BaseController implements ITodoController {
   private readonly relativeUrl = "todos";
 

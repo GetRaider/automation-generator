@@ -15,12 +15,15 @@
     "noImplicitOverride": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
     "paths": {
       "@api/*": ["./src/api/*"],
       "@helpers/*": ["./src/helpers/*"],
       "@constants/*": ["./src/constants/*"],
       "@fixtures/*": ["./src/fixtures/*"],
-      "@magic-strings/*": ["./src/magic-strings/*"]
+      "@magic-strings/*": ["./src/magic-strings/*"],
+      "@decorators/*": ["./src/decorators/*"]
     },
   },
   "ts-node": {
