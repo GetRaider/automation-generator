@@ -1,12 +1,9 @@
 import {CustomConsole, LogType, LogMessage} from "@jest/console";
 
 function format(type: LogType, message: LogMessage): string {
-  const TITLE_INDENT = " ";
-  const CONSOLE_INDENT = TITLE_INDENT + " ";
-
   return message
     .split(/\n/)
-    .map(line => CONSOLE_INDENT + line)
+    .map(line => "> " + line)
     .join("\n");
 }
 
