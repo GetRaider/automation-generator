@@ -1,26 +1,32 @@
 import { processEnv } from "@helpers/processEnv/processEnv.helper";
-import { loggerHelper } from "@helpers/logger/logger.helper";
-import { fsHelper } from "@helpers/fs/fs.helper";
 import { magicStrings } from "@magic-strings/magic-strings";
 
-const { SPEC_NAMES, CI } = processEnv;
-const logger = loggerHelper.get("Config-Helper");
+const { SPEC_NAMES } = processEnv;
 
-export const configHelper = {
-  getSpecs(): string[] {
+class ConfigHelper {
+  private readonly specExtension = ".spec.ts";
+
+  getWebSpecPaths(): string[] {
+    const folderPath = this.getSpecsFolderPath();
     return SPEC_NAMES
-      ? SPEC_NAMES.split(",").map(testName =>
-          !testName.endsWith(".spec.ts") ? `${testName}.spec.ts` : testName,
-        )
-      : [];
-  },
+      ? this.getSpecifiedSpecPaths(folderPath)
+      : [`${folderPath}/*${this.specExtension}`];
+  }
 
-  onPrepare(): void {
-    return CI === "true"
-      ? fsHelper.removeDirectories(
-          magicStrings.path.allureReport,
-          magicStrings.path.allureResults,
-        )
-      : logger.debug("On prepare hook is skipped");
-  },
-};
+  private getSpecsFolderPath(): string {
+    const specifiedFolderName = processEnv.SPECS_FOLDER_NAME
+      ? `/${processEnv.SPECS_FOLDER_NAME}`
+      : "";
+    return `${magicStrings.path.root}/specs/web/**${specifiedFolderName}`;
+  }
+
+  private getSpecifiedSpecPaths(folderPath: string): string[] {
+    return SPEC_NAMES.split(",").map(specName =>
+      specName.endsWith(this.specExtension)
+        ? `${folderPath}/${specName}`
+        : `${folderPath}/${specName}${this.specExtension}`,
+    );
+  }
+}
+
+export const configHelper = new ConfigHelper();

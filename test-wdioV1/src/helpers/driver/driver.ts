@@ -12,7 +12,7 @@ const logger = loggerHelper.get("Driver-Helper");
 class DriverHelper {
   readonly defaultImplicitTimeout = timeouts.xxs;
 
-  async openUrl(url: string): Promise<string> {
+  async openUrl(url: string): Promise<WebdriverIO.Request | void> {
     return browser.url(url);
   }
 
@@ -63,7 +63,7 @@ class DriverHelper {
 
   async findElement(locator: string): Promise<WebdriverIO.Element> {
     try {
-      return browser.$(`[data-testid='${locator}']`);
+      return browser.$(`[data-testid='${locator}']`).getElement();
     } catch (error) {
       const errorMessage = `Can't find element with "${locator}" locator due to: ${error.message}`;
       logger.error(errorMessage);
@@ -73,7 +73,7 @@ class DriverHelper {
 
   async findElements(locator: string): Promise<WebdriverIO.ElementArray> {
     try {
-      return browser.$$(`[data-testid='${locator}']`);
+      return browser.$$(`[data-testid='${locator}']`).getElements();
     } catch (error) {
       const errorMessage = `Can't find elements with "${locator}" locator due to: ${error.message}`;
       logger.error(errorMessage);

@@ -16,6 +16,7 @@ suiteHelper({
       test: async () => {
         await cardDeckList.openDecks();
         await cardDeckList.openDeckByName("Random cards");
+        await browser.debug();
         expect(
           await cardDeck.isSourceCardSide(),
           "default card state is not source",

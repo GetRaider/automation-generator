@@ -1,6 +1,12 @@
 import { configHelper } from "@helpers/config/config.helper";
-import { reporterHelper } from "@helpers/reporter/reporter.helper";
+import { allureHelper } from "@helpers/reporter/allureHelper";
 import { driver } from "@helpers/driver/driver";
+import { magicStrings } from "@magic-strings/magic-strings";
+import { primitivesHelper } from "@helpers/primitives/primitives.helper";
+import { fsHelper } from "@helpers/fs/fs.helper";
+import { processEnv } from "@helpers/processEnv/processEnv.helper";
+
+const { CI } = processEnv;
 
 const reporters = [
   "spec",
@@ -18,7 +24,7 @@ const reporters = [
 export const config = {
   reporters,
   runner: "local",
-  specs: configHelper.getSpecs(),
+  specs: configHelper.getWebSpecPaths(),
   maxInstances: 1,
   capabilities: [
     {
@@ -43,21 +49,26 @@ export const config = {
   framework: "mocha",
   mochaOpts: {
     ui: "bdd",
-    timeout: 90000,
+    timeout: 90_000,
   },
 
   async before() {
     await driver.setImplicitTimeout(driver.defaultImplicitTimeout);
   },
 
-  onPrepare() {
-    return configHelper.onPrepare();
+  onPrepare(): void {
+    return primitivesHelper.string.toBoolean(CI)
+      ? fsHelper.removeDirectories(
+          magicStrings.path.allureReport,
+          magicStrings.path.allureResults,
+        )
+      : console.debug("On prepare hook is skipped");
   },
 
   async afterTest(_test, _context, { error }) {
     if (error) {
-      return reporterHelper.addAttachment(
-        "Last screenshot on error",
+      return allureHelper.addAttachment(
+        "Error screenshot",
         Buffer.from(await driver.takeScreenshot(), "base64"),
         "image/png",
       );
@@ -65,6 +76,6 @@ export const config = {
   },
 
   async onComplete() {
-    return reporterHelper.generate();
+    return allureHelper.generate();
   },
 };

@@ -7,6 +7,7 @@ interface processEnvHelperInterface {
   CI: string;
   USER_PASSWORD: string;
   SPEC_NAMES: string;
+  SPECS_FOLDER_NAME: string;
   WEB_URL: string;
   API_URL: string;
 }

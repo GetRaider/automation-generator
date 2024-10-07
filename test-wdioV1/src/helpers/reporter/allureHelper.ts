@@ -4,7 +4,7 @@ import allure from "allure-commandline";
 import { StepStatus } from "@helpers/reporter/reporter.helper.types";
 import { timeouts } from "@constants/timeouts.constants";
 
-export const reporterHelper = {
+export const allureHelper = {
   async addAttachment(
     name: string,
     value: string | Buffer,
