@@ -5,26 +5,11 @@ import { magicStrings } from "@magic-strings/magic-strings";
 import { primitivesHelper } from "@helpers/primitives/primitives.helper";
 import { fsHelper } from "@helpers/fs/fs.helper";
 import { processEnv } from "@helpers/processEnv/processEnv.helper";
-
-const { CI } = processEnv;
-
-const reporters = [
-  "spec",
-  [
-    "allure",
-    {
-      outputDir: "allure-results",
-      disableWebdriverStepsReporting: true,
-      disableWebdriverScreenshotsReporting: true,
-      disableMochaHooks: true,
-    },
-  ],
-];
+import { timeouts } from "@constants/timeouts.constants";
 
 export const config = {
-  reporters,
   runner: "local",
-  specs: configHelper.getSpecPathsByType(configHelper.specsType.web),
+  specs: configHelper.getSpecPathsByType(configHelper.specsTypes.web),
   maxInstances: 1,
   capabilities: [
     {
@@ -44,20 +29,32 @@ export const config = {
   logLevel: "silent",
   bail: 0,
   waitforTimeout: 0,
-  connectionRetryTimeout: 90_000,
+  connectionRetryTimeout: 120_000,
   connectionRetryCount: 3,
   framework: "mocha",
   mochaOpts: {
     ui: "bdd",
-    timeout: 90_000,
+    timeout: timeouts.testRunner,
   },
+  reporters: [
+    "spec",
+    [
+      "allure",
+      {
+        outputDir: "allure-results",
+        disableWebdriverStepsReporting: true,
+        disableWebdriverScreenshotsReporting: true,
+        disableMochaHooks: true,
+      },
+    ],
+  ],
 
   async before() {
     await driver.setImplicitTimeout(driver.defaultImplicitTimeout);
   },
 
   onPrepare(): void {
-    return primitivesHelper.string.toBoolean(CI)
+    return primitivesHelper.string.toBoolean(processEnv.CI)
       ? fsHelper.removeDirectories(
           magicStrings.path.allureReport,
           magicStrings.path.allureResults,

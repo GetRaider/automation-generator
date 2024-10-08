@@ -4,7 +4,7 @@ import { magicStrings } from "@magic-strings/magic-strings";
 const { SPEC_NAMES, SPECS_FOLDER_NAME } = processEnv;
 
 class ConfigHelper {
-  public readonly specsType = { api: "api", web: "web" };
+  public readonly specsTypes = { api: "api", web: "web" };
   private readonly specExtension = ".spec.ts";
 
   getSpecPathsByType(specsType: string): string[] {
