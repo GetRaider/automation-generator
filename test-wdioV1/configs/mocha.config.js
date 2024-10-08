@@ -1,5 +1,4 @@
 require("ts-node/register");
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { configHelper } = require("../src/helpers/config/config.helper");
 
 module.exports = {
