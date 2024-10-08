@@ -25,7 +25,7 @@ export function suiteHelper(params: ISuite): void {
 
   const reducedName = [...name];
   const inner = reducedName.pop();
-  const baseDescribeName = `${envHelper.getEnv()}`;
+  const baseDescribeName = `${envHelper.getEnv()} <-${envHelper.getBaseApiUrl()}->`;
 
   describe(baseDescribeName, () => {
     reducedName.reduceRight(

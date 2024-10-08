@@ -24,7 +24,7 @@ const reporters = [
 export const config = {
   reporters,
   runner: "local",
-  specs: configHelper.getWebSpecPaths(),
+  specs: configHelper.getSpecPathsByType(configHelper.specsType.web),
   maxInstances: 1,
   capabilities: [
     {

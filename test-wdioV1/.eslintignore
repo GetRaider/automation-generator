@@ -2,4 +2,3 @@ node_modules/*
 allure-report/*
 allure-results/*
 screenshots/*
-wdio.conf.ts

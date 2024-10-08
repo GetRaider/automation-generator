@@ -1,8 +1,8 @@
 {
   "name": "unknown-project",
   "scripts": {
-    "test": "FORCE_COLOR=1 wdio wdio.conf.ts",
-    "testApi": "mocha",
+    "testWeb": "FORCE_COLOR=1 wdio configs/wdio.config.ts",
+    "testApi": "mocha --config configs/mocha.config.js",
     "report": "allure generate --clean && allure open",
     "prettier": "prettier --check .",
     "prettier:fix": "prettier --write .",
