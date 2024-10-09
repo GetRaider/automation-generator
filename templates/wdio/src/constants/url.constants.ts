@@ -1,4 +1,4 @@
-import {processEnv} from "@helpers/processEnv/processEnv.helper";
+import { processEnv } from "@helpers/processEnv/processEnv.helper";
 
 export const urlConstant = {
   base: {
@@ -7,7 +7,7 @@ export const urlConstant = {
       custom: processEnv.WEB_URL,
     },
     api: {
-      local: "http://localhost:8080",
+      local: "http://localhost:8090",
       custom: processEnv.API_URL,
     },
   },

@@ -1,4 +1,9 @@
+import { processEnv } from "@helpers/processEnv/processEnv.helper";
+
 export const timeouts = {
+  get testRunner(): number {
+    return Number(processEnv.TEST_RUNNER_TIMEOUT) || 90_000;
+  },
   animation: 250,
   xxxxs: 500,
   xxxs: 1_000,
