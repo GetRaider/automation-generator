@@ -49,4 +49,6 @@ fi
 
 git init
 
-echo "✅ Project with '$REPO_NAME' name successfully created - remains to execute 'npm install'"
+echo "✅ Project with '$REPO_NAME' name successfully created!"
+echo "❗️ To work with your project move it to your folder and run the 'npm install' command"
+echo "🤝 Enjoy!"

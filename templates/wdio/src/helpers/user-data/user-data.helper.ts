@@ -6,7 +6,7 @@ const password = processEnv.USER_PASSWORD;
 export const userDataHelper = {
   admin(): IUserCredentials {
     return {
-      login: "automation.admin+1@beat.com",
+      login: "alex.local.admin+4@beat.com",
       password,
     };
   },

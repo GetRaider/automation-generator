@@ -1,12 +1,15 @@
 export const defaultEnvVariables = `ENV=local
+#custom
 CI=false
 
-#Can be passed spec name/s separated by comma only for UI or API
+# Can be passed spec name/s separated by comma
 SPEC_NAMES=general-card-deck
-#UI specs
+#SPECS_FOLDER_NAME=users
+# UI specs:
 #general-card-deck
-#API specs
+# API specs:
 #get
 
 USER_PASSWORD=
+#TEST_RUNNER_TIMEOUT=90_000
 `;

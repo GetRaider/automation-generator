@@ -1,5 +1,6 @@
 import { processEnv } from "@helpers/processEnv/processEnv.helper";
 import { urlConstant } from "@constants/url.constants";
+import { primitivesHelper } from "@helpers/primitives/primitives.helper";
 
 export const envHelper = {
   getEnv(): string {
@@ -20,5 +21,9 @@ export const envHelper = {
 
   getBaseApiUrl(): string {
     return urlConstant.base.api[this.getEnv()];
+  },
+
+  isCI(): boolean {
+    return primitivesHelper.string.toBoolean(processEnv.CI);
   },
 };

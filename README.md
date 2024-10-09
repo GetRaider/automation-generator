@@ -6,11 +6,11 @@
 
 ### To generate the UI+API solution based on the WebDriverIO (mocha as a runner):
 ```bash
- sh automation-repo-generator.sh <repository-name> wdio
+ sh automation-generator.sh <repository-name> wdio
 ```
 
 ### To generate the API solution based on the Jest:
 ```bash
- sh automation-repo-generator.sh <repository-name> jest
+ sh automation-generator.sh <repository-name> jest
 ```
 
