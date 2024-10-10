@@ -1,18 +1,18 @@
-import type {Config} from "@jest/types";
+import type { Config } from "@jest/types";
 
-import {processEnv} from "@helpers/processEnv/processEnv.helper";
-
-const {SPEC_NAMES} = processEnv;
+import { configHelper } from "@helpers/config/config.helper";
+import { timeouts } from "@constants/timeouts.constants";
 
 const config: Config.InitialOptions = {
   preset: "ts-jest",
   testEnvironment: "node",
   verbose: true,
-  testRegex: SPEC_NAMES.split(","),
   passWithNoTests: true,
-  setupFilesAfterEnv: ["./logging.config.ts"],
+  testTimeout: timeouts.testRunner,
+  testMatch: configHelper.getSpecPaths(),
+  setupFilesAfterEnv: ["./configs/logging.config.ts"],
   reporters: ["default", "jest-html-reporters"],
-  rootDir: `./`,
+  rootDir: `../`,
   moduleNameMapper: {
     "@api/(.*)": "<rootDir>/src/api/$1",
     "@helpers/(.*)": "<rootDir>/src/helpers/$1",
