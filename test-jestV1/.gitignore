@@ -1,0 +1,12 @@
+.idea
+.env
+
+node_modules
+package-lock.json
+
+logs*
+
+jest-html-reporters-attach
+jest_html_reporters.html
+
+.tsbuildinfo
