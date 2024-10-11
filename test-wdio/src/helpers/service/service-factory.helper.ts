@@ -85,7 +85,7 @@ class ServiceFactoryHelper implements IServiceFactoryHelper {
   ): Record<string, IAssembleArgs> {
     const assembledAdditionalServices = {};
 
-    additionalServices &&
+    additionalServices.length &&
       additionalServices.forEach(({ service, pages, additionalServices }) => {
         return (assembledAdditionalServices[
           this.normalize.serviceName(service.name)

@@ -2,9 +2,9 @@ import { expect } from "chai";
 
 import { suiteHelper } from "@helpers/suite/suite.helper";
 import { envHelper } from "@helpers/env/env.helper";
-import { service } from "@services/get-services";
+import { services } from "@services/get-services";
 
-const { cardDeck, cardDeckList } = service;
+const { cardDeck, cardDeckList } = services;
 
 suiteHelper({
   name: ["Card-deck"],

@@ -7,7 +7,7 @@ import {
 import { IAssembleAllServices } from "@services/types/get-services.types";
 import { serviceFactory } from "@helpers/service/service-factory.helper";
 
-export const service = {
+export const services = {
   ...getServices(),
 };
 
