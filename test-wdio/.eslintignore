@@ -1,5 +1,0 @@
-node_modules/*
-allure-report/*
-allure-results/*
-screenshots/*
-local-wdio.conf.ts
