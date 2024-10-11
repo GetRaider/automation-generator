@@ -1,19 +1,22 @@
-import { assembleServices } from "@services/utils/service-assembler";
 import { HomePo, CardDeckListPo, CardDeckPo } from "@pageObjects/index";
 import {
   HomeService,
   CardDeckService,
   CardDeckListService,
 } from "@services/index";
-import { IGetAppServices } from "@services/types/get-services.types";
+import { IAssembleAllServices } from "@services/types/get-services.types";
+import { serviceFactory } from "@helpers/service/service-factory.helper";
 
-export const app = {
-  ...getAppServices(),
+export const services = {
+  ...getServices(),
 };
 
-function getAppServices(): IGetAppServices {
-  return assembleServices({
-    home: { service: HomeService, pages: { page: HomePo } },
+function getServices(): IAssembleAllServices {
+  return serviceFactory.assembleAll({
+    home: {
+      service: HomeService,
+      pages: { page: HomePo },
+    },
     cardDeck: { service: CardDeckService, pages: { page: CardDeckPo } },
     cardDeckList: {
       service: CardDeckListService,
