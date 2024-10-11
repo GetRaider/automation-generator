@@ -4,6 +4,7 @@ import { BaseService } from "@services/base.service";
 
 export class HomeService extends BaseService {
   protected override readonly page: HomePo = null;
+
   constructor(args: IHomeServiceArgs) {
     const { page } = args;
     super(page);
