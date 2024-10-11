@@ -11,7 +11,16 @@ const config: Config.InitialOptions = {
   testTimeout: timeouts.testRunner,
   testMatch: configHelper.getSpecPaths(),
   setupFilesAfterEnv: ["./configs/logging.config.ts"],
-  reporters: ["default", "jest-html-reporters"],
+  reporters: [
+    "default",
+    [
+      "jest-html-reporters",
+      {
+        publicPath: "./reports/html-report",
+        filename: "report.html",
+      },
+    ],
+  ],
   rootDir: `../`,
   moduleNameMapper: {
     "@api/(.*)": "<rootDir>/src/api/$1",
