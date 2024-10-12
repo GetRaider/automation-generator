@@ -11,6 +11,7 @@ interface processEnvHelperInterface {
   WEB_URL: string;
   API_URL: string;
   TEST_RUNNER_TIMEOUT: string;
+  LOG_LEVEL: string;
 }
 
 export const processEnv = process.env as unknown as processEnvHelperInterface;
