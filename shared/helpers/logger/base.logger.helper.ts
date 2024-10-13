@@ -5,6 +5,7 @@ import {
   IGetSpecifiedArgs,
   LogType,
 } from "@helpers/logger/logger.types";
+import { processEnv } from "@helpers/processEnv/processEnv.helper";
 
 export abstract class BaseLoggerHelper {
   protected constructor() {
@@ -26,7 +27,7 @@ export abstract class BaseLoggerHelper {
           type: "file",
         },
       },
-      categories: { default: { appenders: ["console", "file"], level: "ALL" } },
+      categories: { default: { appenders: ["console", "file"], level: processEnv.LOG_LEVEL || "ALL" } },
     });
   }
 
